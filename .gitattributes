@@ -1,2 +1,161 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+npm init vite
+npm install bootstrap axios react-router-dom
+npm run dev
+
+
+cd server
+npm init -y
+npm install express
+npm install mongoose
+npm install cors
+   "start": "nodemon index.js"
+add this in package.json
+
+created the components and files 
+
+->run the server by creating the index.js
+->Then create the UserModel
+-->create the database
+--->connect the database
+
+------create the user-----
+
+    const Submit = (e) => {
+      e.preventDefault();
+      axios.post("http://localhost:3001/createUser", {name, email, age})
+      .then(result => {
+        console.log(result)
+        navigate('/')
+      })
+      .catch(err => console.log(err))
+    }
+
+axios: 
+This is used to make HTTP requests to the backend (specifically, the /createUser endpoint in this case).
+
+useState() 
+is used to manage three states: 
+name, email, and age. 
+These states store the input values that the user will provide for creating a new user.
+
+e.preventDefault() 
+prevents the default form submission behavior (which would refresh the page).
+
+e.preventDefault() is used in the Submit 
+function to prevent the default behavior of the browser when a form is submitted. By default, submitting a form will cause the page to refresh, which would disrupt the React application's state and flow. By calling preventDefault(), we can handle the form submission entirely with JavaScript (in this case, sending the data using Axios and managing navigation), without triggering a page reload.
+
+
+What is e?
+e is an event object that is automatically passed to event handler functions like Submit.
+This event object represents the event that triggered the function (in this case, the form submission event).
+e.preventDefault() tells the browser to stop the default action (such as a form submission or anchor link navigation).
+
+The .then and .catch methods are used in this route to handle the asynchronous nature of interacting with the database. 
+Specifically, they handle the promise returned by UserModel.create(req.body).
+
+UserModel.create(req.body): 
+This is an asynchronous operation that attempts to create a new user in the 
+database using the data from the req.body. Since it interacts with the database, it returns a promise.
+
+.then(users => res.json(users)):
+
+If the promise is resolved (i.e., the user is successfully created in the database), the .then() method is triggered.
+The users argument contains the result of the operation (the newly created user).
+Inside .then(), res.json(users) sends the newly created user as a JSON response to the client.
+
+.catch(err => res.json(err)):
+
+If the promise is rejected (i.e., an error occurs during the user creation process, such as a validation error or database failure), the .catch() method is triggered.
+The err argument contains the error that occurred.
+Inside .catch(), res.json(err) sends the error as a JSON response to the client, letting the client know something went wrong.
+
+Why use .then and .catch?
+
+Asynchronous Handling:
+
+Database operations like create are asynchronous, meaning they don’t complete immediately. Instead, they return a promise that either resolves (success) or rejects (failure).
+.then() is used to handle the success case when the promise resolves.
+.catch() is used to handle errors when the promise rejects.
+
+Error Handling:
+
+Without .catch(), if an error occurs during the user creation, the error would go unhandled and might cause the server to crash.
+By using .catch(), the error is caught, and a proper response is sent back to the client, making the application more robust.
+
+
+onChange={(e) => setName(e.target.value)}
+
+
+onChange: This is an event handler attribute in React. It specifies a function to be called when the input value changes.
+
+={(e) => setName(e.target.value)}: This is an arrow function assigned to onChange. Arrow functions are often used in React to handle events because they provide a concise way to define inline functions.
+
+---------Users.jsx------------
+
+function Users() {
+    const [users, setUsers] = useState([])
+
+Users(): This defines a functional React component.
+const [users, setUsers] = useState([]): This defines a state variable users initialized to an empty array. setUsers is the function used to update the users state.
+
+useEffect Hook (Fetching User Data)
+
+useEffect(() => {
+    axios.get('http://localhost:3001')
+    .then(result => setUsers(result.data))
+    .catch(err => console.log(err))
+}, [])
+
+useEffect(() => { ... }, []): This hook runs after the component mounts (due to the empty dependency array []). It is used to fetch the list of users from the backend.
+axios.get('http://localhost:3001'): Sends a GET request to http://localhost:3001 to retrieve user data.
+.then(result => setUsers(result.data)): When the request is successful, the data returned (assumed to be the list of users) is stored in the users state via setUsers.
+
+Component Definition
+
+function UpdateUser() {
+  const {id} = useParams()
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [age, setAge] = useState('')
+  const navigate = useNavigate()
+
+The UpdateUser function is a React functional component.
+const {id} = useParams(): This extracts the id parameter from the route, which is used to fetch and update the specific user.
+
+Update Function (Handling Form Submission)
+
+const Update = (e) => {
+  e.preventDefault();
+  axios.put("http://localhost:3001/updateUser/"+id, {name, email, age})
+    .then(result => {
+      console.log(result)
+      navigate('/')
+    })
+    .catch(err => console.log(err))
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

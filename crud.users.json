@@ -1,0 +1,36 @@
+[{
+  "_id": {
+    "$oid": "66d19c97d706eeaeca0b763e"
+  },
+  "name": "Umais Rasheed",
+  "email": "umaisrasheed63@gmail.com",
+  "age": 25,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66d19ceed706eeaeca0b7642"
+  },
+  "name": "sajawal Younes",
+  "email": "sajawalyounes@gmail.com",
+  "age": 30,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66d19d38d706eeaeca0b7646"
+  },
+  "name": "Ali Ahmad Khan",
+  "email": "malikalikhan45@gmail.com",
+  "age": 2,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66d55297db2623b21f950c0d"
+  },
+  "name": "Imran khan",
+  "email": "imrankhan804@gmail.com",
+  "age": 58,
+  "__v": 0
+}]
